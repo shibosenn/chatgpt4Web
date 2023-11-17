@@ -20,10 +20,6 @@ def new2_chat2gpt4(prompt):
 
 app = Flask(__name__)
 
-@app.route('/hello', methods=['GET'])
-def hello():
-    return "Hello World!"
-
 @app.route('/')
 def home():
     return render_template('index.html')
