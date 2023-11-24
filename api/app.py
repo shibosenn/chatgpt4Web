@@ -38,11 +38,11 @@ def chat2gpt35_2(messages):
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/api/')
 def home():
     return render_template('index.html')
 
-@app.route('/chat', methods=['POST'])
+@app.route('/api/chat/', methods=['POST'])
 def chat():
     user_message = request.get_json()['message']  # 获取用户消息
     # gpt4_response = new2_chat2gpt4(user_message)  # 将用户消息传给new2_chat2gpt4函数
