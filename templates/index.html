@@ -13,7 +13,8 @@
     <script>
         async function sendMessage() {
             const userInput = document.getElementById('userInput').value;
-            
+            console.log('Sending message:', userInput); // 打印发送的消息
+
             // 用户的消息立即打印出来，并清除输入框
             const userMessageElement = document.createElement('p');
             userMessageElement.classList.add('message', 'user');
@@ -21,23 +22,38 @@
             document.getElementById('chatOutput').appendChild(userMessageElement);
             document.getElementById('userInput').value = '';
 
-            const response = await fetch('api/chat/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ message: userInput })
-            });
-            const result = await response.text();
-            
-            // GPT-4的回答立即打印出来
-            const gpt4MessageElement = document.createElement('p');
-            gpt4MessageElement.classList.add('message', 'gpt4');
-            gpt4MessageElement.textContent = `GPT-4: ${result}`;
-            document.getElementById('chatOutput').appendChild(gpt4MessageElement);
-            
+            try {
+                const response = await fetch('api/chat/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message: userInput })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.text();
+                console.log('Received response:', result); // 打印接收到的响应
+
+                // GPT-4的回答立即打印出来
+                const gpt4MessageElement = document.createElement('p');
+                gpt4MessageElement.classList.add('message', 'gpt4');
+                gpt4MessageElement.textContent = `GPT-4: ${result}`;
+                document.getElementById('chatOutput').appendChild(gpt4MessageElement);
+            } catch (error) {
+                console.error('Fetch error:', error); // 打印捕获到的错误
+                const errorMessageElement = document.createElement('p');
+                errorMessageElement.classList.add('error');
+                errorMessageElement.textContent = `Error: ${error.message}`;
+                document.getElementById('chatOutput').appendChild(errorMessageElement);
+            }
+
             chatOutput.scrollTop = chatOutput.scrollHeight;
         }
+
     </script>
 </body>
 </html>
