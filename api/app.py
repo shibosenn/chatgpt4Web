@@ -38,7 +38,7 @@ def chat2gpt35_2(messages):
 
 app = Flask(__name__)
 
-@app.route('/api/')
+@app.route('/')
 def home():
     return render_template('index.html')
 
