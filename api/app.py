@@ -36,10 +36,11 @@ def chat2gpt35_2(messages):
     )['choices'][0]['message']['content']
     return answer
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='../templates')
 
 @app.route('/')
 def home():
+    
     return render_template('index.html')
 
 @app.route('/api/chat/', methods=['POST'])
