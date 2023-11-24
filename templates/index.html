@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Chat with GPT-4</title>
-    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <link rel="stylesheet" type="text/css" href="../static/styles.css">
 </head>
 <body>
     <h1>Chat with GPT-4</h1>
@@ -23,7 +23,7 @@
             document.getElementById('userInput').value = '';
 
             try {
-                const response = await fetch('api/chat/', {
+                const response = await fetch('../api/chat/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
