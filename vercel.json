@@ -1,7 +1,7 @@
 {
     "rewrites": [
-      { "source": "/api/(.*)", "destination": "/api/$1" },
-      { "source": "/static/(.*)", "destination": "/static/$1" },
+      { "source": "/api/(.*)", "destination": "/api/app.py" },
+      { "source": "/static/(.*)", "destination": "/static/styles.css" },
       { "source": "/", "destination": "/templates/index.html" }
     ]
   }

@@ -43,14 +43,13 @@ def home():
     
     return render_template('index.html')
 
-@app.route('/api/chat', methods=['POST'])
+@app.route('/api/chat/', methods=['POST'])
 def chat():
     # user_message = request.get_json()['message']  # 获取用户消息
     # # gpt4_response = new2_chat2gpt4(user_message)  # 将用户消息传给new2_chat2gpt4函数
-    # gpt35_response = chat2gpt35_2('message')
+    gpt35_response = chat2gpt35_2('message')
     # # return gpt4_response  # 返回GPT-4的响应
-    # return gpt35_response
-    return "hello"
+    return gpt35_response
 
 if __name__ == "__main__":
     app.run(port=5000)
